@@ -5,15 +5,16 @@ FROM ubuntu:24.04
 RUN apt-get update && apt-get -y install python3 python3-pip git autoconf \
     automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev \ 
     gawk build-essential bison flex texinfo gperf libtool patchutils bc \ 
-    zlib1g-dev libexpat-dev opam  build-essential libgmp-dev z3 pkg-config zlib1g-dev
+    zlib1g-dev libexpat-dev opam  build-essential libgmp-dev z3 pkg-config zlib1g-dev \
+    gcc-riscv64-linux-gnu
 
 RUN pip install git+https://github.com/riscv/riscof.git --break-system-packages
 
-RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain && \
-    git clone --recursive https://github.com/riscv/riscv-opcodes.git && \
+#RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain && \
+RUN git clone --recursive https://github.com/riscv/riscv-opcodes.git && \
     git clone https://github.com/riscv/sail-riscv.git
 
-RUN cd riscv-gnu-toolchain && ./configure --prefix=/opt/riscv/ --with-arch=rv64ima --with-abi=lp64 && make -j$(nproc)
+#RUN cd riscv-gnu-toolchain && ./configure --prefix=/opt/riscv/ --with-arch=rv64ima --with-abi=lp64 && make -j$(nproc)
 
 RUN opam init -y --disable-sandboxing && \
     opam switch create 5.1.0 && \

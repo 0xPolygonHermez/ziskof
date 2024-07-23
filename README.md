@@ -1,8 +1,27 @@
+# Run test using docker 
+
+you can run the tests on the published docker image, simply by running this command
+
+```bash
+docker run --rm -v ./target/release/ziskemu:/program riscv2zisk:latest
+```
+
+where `./target/release/ziskemu` is the path to the `ziskemu` binary.
+
+you should get something like this:
+
+```bash
+
+```
+
+by running an `echo $?` you will know if all tests have been passed (0) or if there was an error (=!0).
+
+
 # Build docker image
     
-    ```console
-    $ docker build -t -t ziskof:latest .
-    ```
+```bash
+$ docker build -t -t ziskof:latest .
+```
 
 # Tutorial for running Riscof test suit [Manually]
 
