@@ -37,6 +37,7 @@ COPY . /workspace
 RUN echo "PATH=$PATH:/opt/riscv/bin:/sail-riscv/c_emulator/" >> $HOME/.profile 
 
 RUN cd /workspace/ && \
+    mkdir -p /workspace/output && \
     riscof --verbose info arch-test --clone && \
     riscof validateyaml --config=config.ini && \
     riscof testlist --config=config.ini --suite=riscv-arch-test/riscv-test-suite/ --env=riscv-arch-test/riscv-test-suite/env
