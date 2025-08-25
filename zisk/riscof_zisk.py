@@ -75,6 +75,7 @@ class zisk(pluginTemplate):
        # runTests function
        self.compile_cmd = 'riscv{1}-unknown-elf-gcc -march={0} \
          -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles -g\
+         -Wa,-mno-relax -Wl,--no-relax \
          -T '+self.pluginpath+'/env/link.ld\
          -I '+self.pluginpath+'/env/\
          -I ' + archtest_env + ' {2} -o {3} {4} -Xlinker -Map=output.map'
