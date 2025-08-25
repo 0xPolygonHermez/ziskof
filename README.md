@@ -3,19 +3,42 @@
 you can run the tests on the published docker image, simply by running this command
 
 ```bash
-docker run --rm -v ./target/release/ziskemu:/program riscv2zisk:latest
+docker run --rm -v ./target/release/ziskemu:/program ghcr.io/0xpolygonhermez/ziskof:latest
 ```
 
 where `./target/release/ziskemu` is the path to the `ziskemu` binary.
 
 you should get something like this:
 
-```bash
+```bashc
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/I/src/xori-01.S : b91f98f3a0e908bad4680c2e3901fbc24b63a563 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/div-01.S : 9b503d7890296e53aa8a06e49ebef3c61ce5d3fd : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/divu-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/divuw-01.S : 9b503d7890296e53aa8a06e49ebef3c61ce5d3fd : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/divw-01.S : 9b503d7890296e53aa8a06e49ebef3c61ce5d3fd : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/mul-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/mulh-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/mulhsu-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/mulhu-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/mulw-01.S : 9b503d7890296e53aa8a06e49ebef3c61ce5d3fd : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/rem-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/remu-01.S : 4e61c25bdd4ec4e7b9894a6c85a997b496a83bb2 : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/remuw-01.S : 9b503d7890296e53aa8a06e49ebef3c61ce5d3fd : Passed
+    INFO | /workspace/riscv-arch-test/riscv-test-suite/rv64i_m/M/src/remw-01.S : 9b503d7890296e53aa8a06e49ebef3c61ce5d3fd : Passed
+    INFO | Test report generated at /workspace/output/riscof_work/report.html.
+    INFO | Opening test report in web-browser
 
 ```
 
 by running an `echo $?` you will know if all tests have been passed (0) or if there was an error (=!0).
 
+# Extract elf and signatures
+```
+docker run --rm -v ./target/release/ziskemu:/program -v ~/ziskof_workspace/:/workspace/output 
+ghcr.io/0xpolygonhermez/ziskof
+```
+
+You will obtain the result of the execution in `~/ziskof_workspace`.
 
 # Build docker image
     
