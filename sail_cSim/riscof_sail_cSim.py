@@ -28,8 +28,8 @@ class sail_cSim(pluginTemplate):
             raise SystemExit(1)
         self.num_jobs = str(config['jobs'] if 'jobs' in config else 1)
         self.pluginpath = os.path.abspath(config['pluginpath'])
-        self.sail_exe = { '32' : os.path.join(config['PATH'] if 'PATH' in config else "","riscv_sim_RV32"),
-                '64' : os.path.join(config['PATH'] if 'PATH' in config else "","riscv_sim_RV64")}
+        self.sail_exe = { '32' : os.path.join(config['PATH'] if 'PATH' in config else "","sail_riscv_sim"),
+                '64' : os.path.join(config['PATH'] if 'PATH' in config else "","sail_riscv_sim")}
         self.isa_spec = os.path.abspath(config['ispec']) if 'ispec' in config else ''
         self.platform_spec = os.path.abspath(config['pspec']) if 'ispec' in config else ''
         self.make = config['make'] if 'make' in config else 'make'
@@ -44,6 +44,7 @@ class sail_cSim(pluginTemplate):
         self.objdump_cmd = 'riscv{1}-unknown-elf-objdump -D {0} > {2};'
         self.compile_cmd = 'riscv{1}-unknown-elf-gcc -march={0} \
          -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles\
+         -Wa,-mno-relax -Wl,--no-relax \
          -T '+self.pluginpath+'/env/link.ld\
          -I '+self.pluginpath+'/env/\
          -I ' + archtest_env
