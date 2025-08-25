@@ -49,11 +49,11 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            # latest si el push es a main
+            # latest if the push is to main
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-            # sha corto siempre
+            # always short sha
             type=sha,format=short
-            # si el evento es un tag, usar semver (quita la 'v' si existe)
+            # if the event is a tag, use semver (remove the 'v' if it exists)
             type=semver,pattern={{version}},enable=${{ startsWith(github.ref, 'refs/tags/') }}
           labels: |
             org.opencontainers.image.source=${{ github.repositoryUrl }}
