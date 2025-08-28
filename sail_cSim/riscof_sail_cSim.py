@@ -95,7 +95,16 @@ class sail_cSim(pluginTemplate):
 
             execute = "@cd "+testentry['work_dir']+";"
 
-            cmd = self.compile_cmd.format(testentry['isa'].lower(), self.xlen) + ' ' + test + ' -o ' + elf
+            march_real = testentry['isa'].lower()
+            cmd = self.compile_cmd.format(march_real, self.xlen)
+            has_d = ('d' in march_real) or ('g' in march_real)
+            xlen_int = 64 if str(self.xlen) == '64' else 32
+            if xlen_int == 64:
+                abi = 'lp64d' if has_d else 'lp64'
+            else:
+                abi = 'ilp32d' if has_d else 'ilp32'
+            cmd = re.sub(r'\s-mabi=\S+', '', cmd) + f' -mabi={abi}'
+            cmd = cmd + ' ' + test + ' -o ' + elf
             compile_cmd = cmd + ' -D' + " -D".join(testentry['macros'])
             execute+=compile_cmd+";"
 

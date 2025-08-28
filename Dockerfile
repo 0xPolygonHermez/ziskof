@@ -17,7 +17,7 @@ RUN python3 -m venv test && \
 
 RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain && \
     cd riscv-gnu-toolchain && \
-    ./configure --prefix=/opt/riscv/ --with-arch=rv64imac --with-abi=lp64 && \ 
+    ./configure --prefix=/opt/riscv/ --with-arch=rv64imafdc --with-abi=lp64d && \ 
     make -j$(nproc) && \
     rm -rf /riscv-gnu-toolchain
 

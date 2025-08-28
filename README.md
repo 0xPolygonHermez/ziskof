@@ -34,7 +34,7 @@ by running an `echo $?` you will know if all tests have been passed (0) or if th
 
 # Extract elf and signatures
 ```
-docker run --rm -v ./target/release/ziskemu:/program -v ~/ziskof_workspace/:/workspace/output 
+docker run --rm -v ${ABSOLUTE_PATH}/ziskemu:/program -v ${ABSOLUTE_PATH}/ziskof_workspace/:/workspace/output 
 ghcr.io/0xpolygonhermez/ziskof
 ```
 
@@ -43,7 +43,7 @@ You will obtain the result of the execution in `~/ziskof_workspace`.
 # Build docker image
     
 ```bash
-$ docker build -t -t ziskof:latest .
+$ docker build -t ziskof:latest .
 ```
 
 # Tutorial for running Riscof test suit [Manually]
