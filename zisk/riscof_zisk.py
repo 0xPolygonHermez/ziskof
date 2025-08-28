@@ -150,7 +150,15 @@ class zisk(pluginTemplate):
 
           # substitute all variables in the compile command that we created in the initialize
           # function
-          cmd = self.compile_cmd.format(testentry['isa'].lower(), self.xlen, test, elf, compile_macros)
+          march_real = testentry['isa'].lower()
+          cmd = self.compile_cmd.format(march_real, self.xlen, test, elf, compile_macros)
+          has_d = ('d' in march_real) or ('g' in march_real)
+          xlen_int = 64 if str(self.xlen) == '64' else 32
+          if xlen_int == 64:
+            abi = 'lp64d' if has_d else 'lp64'
+          else:
+            abi = 'ilp32d' if has_d else 'ilp32'
+          cmd = re.sub(r'\s-mabi=\S+', '', cmd) + f' -mabi={abi}'
 
 	  # if the user wants to disable running the tests and only compile the tests, then
 	  # the "else" clause is executed below assigning the sim command to simple no action
