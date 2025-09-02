@@ -160,7 +160,7 @@ $ node $ZISKJS/src/sim/main.js -r $ZISKJS/work/my.ziskrom -n 100000 -t $ZISKJS/w
 $ diff $ZISKJS/work/qemu.tr $ZISKJS/work/zisk.tr
 ```
 
-You  can also use visual code to compare two files: [https://learn.microsoft.com/en-us/visualstudio/ide/compare-with?view=vs-2022](chack here)
+You  can also use visual code to compare two files: [chack here](https://learn.microsoft.com/en-us/visualstudio/ide/compare-with?view=vs-2022)
 
 In the simulator, tou can put a conditional breakpoint of the form:
 
