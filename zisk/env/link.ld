@@ -8,7 +8,7 @@ SECTIONS
   . = ALIGN(0x1000);
   .text : { *(.text) }
   .rodata : { *(.rodata .rodata.*)}
-  . = 0xa0020000;
+  . = 0xa0010000;
   . = ALIGN(0x1000);
   .tohost : { *(.tohost) }
   . = ALIGN(0x1000);
