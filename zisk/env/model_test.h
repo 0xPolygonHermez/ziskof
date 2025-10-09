@@ -32,7 +32,7 @@
     addi t0, t0, 4;    \
     j next;   \
   end: \
-    li t1, 0xa0008f12; \
+    li t1, 0xa000f890; \
     lw t0, (t1); \
     li   t1, ARCH_ID_ZISK; \
     beq t0, t1, zisk_exit; \
